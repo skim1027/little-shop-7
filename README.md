@@ -41,8 +41,8 @@
 1. [Evaluation](./doc/evaluation.md)
 
 
-## Readme
-#### Project Description
+## Summary
+### Project Description
 This project has been a container of different areas of education through Turing, including the use and organization of CSV files and converting them into smart objects for more dynamic assessments. It has required some new skills to develop including Rake, FactoryBot, Faker, CSS, HTML styling, and more.
 
 The project is split into different phases:
@@ -56,16 +56,17 @@ This was all while managing the project with multiple parties through the use of
 
 All-in-all, this project has been a great practice of collaboration, managing complex Github merge conflicts, and tying in new and old DRY/MVC practices for better technical understanding.
   
-#### Summary of Work Completed 
+### Summary of Work Completed 
   - All user stories up to extension 1 was completed, styling
   - Partial completion of extension 1-2
   
-#### Potential Refactor
+### Potential Refactor
 - Update the path for all tests (i.e. from /merchants/:merchant_id/dashboard to merchant_dashboard_index_path)
 - Refactor to build helper methods in controllers
 - Use iteration for some of the tests
+- For additional practice, any/all API extensions and other extensions
   
-#### Contributors
+### Contributors
 - Anthea Yur: https://github.com/chisPmama
 - Joseph Lee: https://github.com/josephlee702
 - Nathan Trautenberg: https://github.com/WagglyDessert

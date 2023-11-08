@@ -1,19 +1,19 @@
-<div class="merch_header">Little Esty Shop</div>
-<div class="merch_current_button">Current Item</div>
-<div class="merch_nav_button"><%= link_to "Update Current Item", edit_merchant_item_path %></div>
-<div class="merch_nav_button"><%= link_to "Items", merchant_items_path %></div>
-<div class="merch_nav_button"><%= link_to "Create a new item", new_merchant_item_path  %></div>
-<div class="merch_nav_button"><%= link_to "Dashboard", merchant_dashboard_index_path %></div><br><br><br>
-
-
+<body>
+<div class="merch_header">Little Esty Shop</div><br>
+<div class ="merch_nav_button"><%= link_to "Merchant Invoices", merchant_invoices_path %></div>
+<div class="merch_nav_button"><%= link_to "Merchant Items", merchant_items_path %></div>
+<div class="merch_nav_button"><%= link_to "Merchant Dashboard", merchant_dashboard_index_path %></div>
 <h3><%= @item.merchant.name %>'s Item</h3>
-
+<%= link_to "Create a new item", new_merchant_item_path  %>
 <div class="merch_subhead">Item #<%= @item.id %></div>
+<br><br>
+
+
 
 <p><b>Item Name:</b> <%= @item.name %></p>
 <p><b>Item Description:</b> <%= @item.description %></p>
 <p><b>Item Unit Price: </b><%= @item.unit_price %></p>
-
+<p><b><%= link_to "Update Current Item", edit_merchant_item_path %></b><p>
 
 
 

@@ -1,9 +1,10 @@
-<div class="merch_header">Little Esty Shop</div>
-<div class="merch_current_button">Create a new item</div>
-<div class="merch_nav_button"><%= link_to "Items", merchant_items_path %></div>
-<div class="merch_nav_button"><%= link_to "Dashboard", merchant_dashboard_index_path %></div><br><br><br>
-
-<div class="merch_subhead">Add a New Item</div>
+<body>
+<div class="merch_header">Little Esty Shop</div><br>
+<div class="merch_nav_button"><%= link_to "Merchant Items", merchant_items_path %></div>
+<div class ="merch_nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %></div>
+<div class="merch_nav_button"><%= link_to "Merchant Dashboard", merchant_dashboard_index_path %></div>
+<h3><%= @merchant.name %></h3>
+<div class="merch_subhead">Add a New Item</div><br><br>
 
 <%= form_with url: "/merchants/#{@merchant.id}/items", method: :post, data: { turbo:false }, local: true do |f| %>
   <%= f.hidden_field :item_add, value: "Add_item" %>

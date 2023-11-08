@@ -81,6 +81,38 @@
         text-align: center;
       }
 
+ /* REFORMATTING INTO TABLES MERCH ONLY*/
+      .m_table {
+        overflow: auto;
+        width: 100%;
+      }
+      .m_table table {
+        border: 1.5px solid #000000;
+        height: 100%;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        border-spacing: 1px;
+        text-align: center;
+      }
+      .m_table th {
+          border: 1.5px solid #000000;
+          background-color: seagreen;
+          color: #fffafa;
+          padding: 5px;
+      }
+      .m_table td {
+          border: 1.5px solid #000000;
+          padding: 5px;
+      }
+      .m_table tr:nth-child(even) td {
+          background-color: #ffffff;
+          color: #000000;
+      }
+      .m_table tr:nth-child(odd) td {
+          background-color: #8FBC8F;
+          color: #000000;
+      }
 
       /* USED FOR SPLITTING INDEX COLUMNS, USED FOR BOTH MERCH AND ADMIN*/
       .two-columns{
