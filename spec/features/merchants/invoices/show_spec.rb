@@ -105,6 +105,16 @@ RSpec.describe 'merchant invoices index page (/merchants/:merchant_id/invoices)'
       expect(page).to have_current_path("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
       @invoice_item1.reload
       expect(@invoice_item1.status).to eq("packaged")
+      select "shipped", from: "status_update"
+      click_button "Update Item Status"
+      expect(page).to have_current_path("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
+      @invoice_item1.reload
+      expect(@invoice_item1.status).to eq("shipped")
+      select "pending", from: "status_update"
+      click_button "Update Item Status"
+      expect(page).to have_current_path("/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}")
+      @invoice_item1.reload
+      expect(@invoice_item1.status).to eq("pending")
     end
   end 
 end
