@@ -10,7 +10,7 @@
   <div>
     <div class="admin_sub"><h3>Incomplete Invoices</h3></div><br><br><br><br><br>
       <ol><% @invoices.incomplete_not_shipped.each do |i| %>
-          <%= link_to "Invoice ##{i.id}", "/admin/invoices/#{i.id}" %> - <%= i.format_date %><br>
+          <%= link_to "Invoice ##{i.id}", "/admin/invoices/#{i.id}" %> - <%= i.format_date %><br><br>
           <% end %>
       </ol>
     </div>

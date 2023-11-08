@@ -3,37 +3,52 @@
  <div class ="merch_nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %></div>
  <div class ="merch_nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
  <div class ="merch_nav_button"><%= link_to "Merchant Dashboard", "/merchants/#{@merchant.id}/dashboard" %></div>
+ 
 <h3> <%= @merchant.name %> </h3>
 <br><br>
 
 <div class="merch_sub_full_center">
- <h3> Invoice #<%= @invoice.id %></h3></div><br><br><br><br><br>
-<p>Invoice Status: <%= @invoice.status %></p>
-<p>Invoice Date: <%= @invoice.created_at.strftime('%A, %B %d, %Y') %></p>
+<h3> Invoice #<%= @invoice.id %></h3></div><br><br>
+<b><p>Invoice Status: <%= @invoice.status %></p></b>
+<b><p>Invoice Date: <%= @invoice.created_at.strftime('%A, %B %d, %Y') %></p></b>
 
-<p>Total Revenue: <%= number_to_currency(@invoice.potential_revenue, unit: "$") %></p>
+<h3><b><p>Total Revenue: <%= number_to_currency(@invoice.potential_revenue, unit: "$") %></p></b></h3>
 
-<p>Customer Name: <%= @invoice.customer.name %></p>
+<h3>Items on this Invoice:</h3>
+
+<h3>Customer Name: <%= @invoice.customer.name %></h3>
 
 </div>
 
-<p class="solid">Invoice Items</p>
-<% @invoice.items.each do |item| %>
-  <% item.invoice_items.each do |ii| %>
-    <% if ii.invoice_id == @invoice.id %>
-      <p>Item Name: <%= item.name %></p>
-      <p>Item Quantity: <%= ii.quantity %></p>
-      <p>Item Price: <%= item.unit_price %></p>
-      <p>Status: <%= ii.status %></p>
+<h3>Items on this Invoice</h3>
 
-      <%= form_with url: "/merchants/#{@invoice.items.first.merchant.id}/invoices/#{@invoice.id}", method: :patch, data: {turbo: false} do |f| %>
-        <%= f.hidden_field :merchant_id, value: item.merchant.id %>
-        <%= f.hidden_field :invoice_id, value: @invoice.id %>
-        <%= f.hidden_field :invoice_item_id, value: ii.id %>
-        <%= f.select :status_update, ["pending", "packaged", "shipped"], selected: ii.status %>
-        <%= f.submit "Update Item Status" %>
+<div class="m_table" role="region" tabindex="0">
+  <table>
+    <tr>
+      <th>Item Name</th>
+      <th>Quantity</th>
+      <th>Unit Price</th>
+      <th>Status</th>
+      <th>Status Change</th>
+    </tr>
+    <% @invoice.items.each do |item| %>
+      <% item.invoice_items.each do |ii| %>
+        <% if ii.invoice_id == @invoice.id %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= ii.quantity %></td>
+            <td><%= item.unit_price %></td>
+            <td><%= ii.status %></td>
+            <td><%= form_with url: "/merchants/#{@invoice.items.first.merchant.id}/invoices/#{@invoice.id}", method: :patch, data: {turbo: false} do |f| %>
+              <%= f.hidden_field :merchant_id, value: item.merchant.id %>
+              <%= f.hidden_field :invoice_id, value: @invoice.id %>
+              <%= f.hidden_field :invoice_item_id, value: ii.id %>
+              <%= f.select :status_update, ["pending", "packaged", "shipped"], selected: ii.status %>
+              <%= f.submit "Update Item Status" %>
+            <% end %></td>
+          </tr>
+        <% end %>
       <% end %>
-
     <% end %>
-  <% end %>
-<% end %>
+  </table>
+</div>

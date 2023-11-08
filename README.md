@@ -39,3 +39,36 @@
 1. [User Stories](./doc/user_stories.md)
 1. [Extensions](./doc/extensions.md)
 1. [Evaluation](./doc/evaluation.md)
+
+
+## Summary
+### Project Description
+This project has been a container of different areas of education through Turing, including the use and organization of CSV files and converting them into smart objects for more dynamic assessments. It has required some new skills to develop including Rake, FactoryBot, Faker, CSS, HTML styling, and more.
+
+The project is split into different phases:
+- Phase 1 - CSV loading through Rake and creating foreign key relationships
+- Phase 2 - Setting up Factory Bot and Faker to more efficiently instantiate test objects
+- Phase 3 - Following User Stories and ensuring the standards of MVC
+- Phase 4 - Formatting and Styling by matching the view to the provided wireframes
+- Phase 5 - Refactoring for DRY methods with the use of partials, advanced routing methods, and collaborating with one another to ensure all requirements were met
+
+This was all while managing the project with multiple parties through the use of Github Projects and communication through Slack.
+
+All-in-all, this project has been a great practice of collaboration, managing complex Github merge conflicts, and tying in new and old DRY/MVC practices for better technical understanding.
+  
+### Summary of Work Completed 
+  - All user stories up to extension 1 was completed, styling
+  - Partial completion of extension 1-2
+  
+### Potential Refactor
+- Update the path for all tests (i.e. from /merchants/:merchant_id/dashboard to merchant_dashboard_index_path)
+- Refactor to build helper methods in controllers
+- Use iteration for some of the tests
+- For additional practice, any/all API extensions and other extensions
+  
+### Contributors
+- Anthea Yur: https://github.com/chisPmama
+- Joseph Lee: https://github.com/josephlee702
+- Nathan Trautenberg: https://github.com/WagglyDessert
+- Sooyung Kim: https://github.com/skim1027
+
