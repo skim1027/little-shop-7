@@ -1,28 +1,19 @@
 <div class="header"><h1>Little Esty Shop</h1></div>
 
+
+
 <ul>
   <li><a> <%= @merchant.name %>'s Items </a></li>
   <li><%= link_to "Create a new item", "/merchants/#{@merchant.id}/items/new" %></li>
 </ul>
 
+
+
 <p class="solid"><b> Items for <%= @merchant.name %> </b></p>
+
 <div class="three-columns">
-
   <div>
-    <h3>Top 5 Popular Items and Revenue</h3>
-    <div id="popular_items-<%= @merchant.id %>">
-      <ol><% @merchant.popular_items.each do |item|%>
-          <li>
-            <%= item.name %> | <%= number_to_currency(item.total_revenue) %>
-          </li><br> 
-          <p>Top selling date for <%= item.name %> was <%= item.top_sale_date %> </p>
-        <% end %>
-      </ol>
-    </div>
-  </div>
-
-  <div>
-    <p><h3>Enabled Items</h3></p>
+  <div class="subhead"><p><h3>Enabled Items</h3></p></div>
     <% @merchant.items.each do |item| %>
       <div id="enabled_item-<%= item.id %>">
         <% if item.enable == true %>  
@@ -37,7 +28,7 @@
   </div>
 
   <div>
-  <p><h3>Disabled Items</h3></p>
+  <div class="subhead"><p><h3>Disabled Items</h3></p></div>
   <% @merchant.items.each do |item| %>
     <div id="disabled_item-<%= item.id %>">
       <% if item.enable == false %>
@@ -49,5 +40,17 @@
       <% end %>
     </div>
   <% end %>
+  </div>
+
+
+  <div>
+  <div class="subhead"><h3>Top 5 Popular Items and Revenue</h3></div>
+    <div id="popular_items-<%= @merchant.id %>">
+      <ol><% @merchant.popular_items.each do |item|%>
+          <li><h4><%= item.name %> </h4> <%= number_to_currency(item.total_revenue) %> in sales<br>
+          Top selling date: <%= item.name %> <%= item.top_sale_date %><br></li>
+        <% end %>
+      </ol>
+    </div>
   </div>
 </div>
