@@ -12,58 +12,58 @@
 
   <body>
     <style>
+      /*Merchant Styles*/
       body {
         font-family: Arial, sans-serif;
       }
-      .header {
-        font-family: Monaco;
-        background-color: MediumSeaGreen;
+
+      .merch_header {
+        font-family: Arial;
+        font-size:30px;
+        font-weight: bold;
+        background-color: mediumseagreen;
         padding: 20px;
         text-align: center;
       }
-      .subhead {
-        font-family: Helvetica;
-        border-left: 6px solid blue;
-        background-color: lightgrey;
-      }
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-      }
-      li {
-        float: left;
-      }
-      li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
-      /* li a:hover:not(.active) {
-        background-color: #111;
-      } */
-      .active {
-        background-color: #04AA6D;
-      }
-
-      p.solid {
-        border-style: solid;
-        margin: auto;  
-        padding: 16px;
+      .merch_subhead {
+        font-family: Arial;
+        font-size:21px;
+        font-weight: bold;
+        padding: 20px;
         text-align: center;
       }
 
-      .button {
-        display: flex;
-        justify-content: space-between;
-        margin-right: 1200px;
+      .merch_current_button {
+        background-color: mediumseagreen;
+        border-radius:22px;
+        display:inline-block;
+        font-family:Arial;
+        font-size:12px;
+        padding:16px 19px;
+        text-decoration:none;
+        float: right;
       }
 
-      /* USED FOR SPLITTING INDEX COLUMNS */
+      .merch_nav_button {
+        border-radius:22px;
+        display:inline-block;
+        cursor:pointer;
+        font-family:Arial;
+        font-size:12px;
+        padding:16px 19px;
+        text-decoration:none;
+        float: right;
+      }
+      .merch_nav_button:hover {
+        background-color: mediumseagreen;
+      }
+      .merch_nav_button:active {
+        position:relative;
+        top:1px;
+      }
+
+
+      /* USED FOR SPLITTING INDEX COLUMNS, USED FOR BOTH MERCH AND ADMIN*/
       .two-columns{
         display:flex;
       }
@@ -73,7 +73,7 @@
         padding: 1rem;
       }
 
-      /* USED FOR TRIPLE SPLITTING INDEX COLUMNS */
+      /* USED FOR TRIPLE SPLITTING INDEX COLUMNS, USED FOR BOTH MERCH AND ADMIN */
       .three-columns{
         display:flex;
       }
@@ -158,6 +158,7 @@
         float: left;
       }
 
+      /*CAN BE USED FOR BOTH ADMIN AND MERCH*/
       .enlarge_list {
         font-size:20px;
         line-height: 1.5;
