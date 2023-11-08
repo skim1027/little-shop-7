@@ -1,20 +1,35 @@
-<h3> Little Esty Shop</h3>
+<body>
+ <div class="merch_header"> Little Esty Shop</div><br>
+<div class ="nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
+<div class ="nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %></div>
+<div class ="current_button">Dashboard</div>
 <h3> Name: <%= @merchant.name %></h3>
-<%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %>
-<%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %>
+<br><br>
 
-<section id="Items-Ready-to-Ship">
-<h3> Items Ready to Ship</h3>
+<div class="two-columns">
+  <div>
+    <div class="merch_sub">
+      <section id="Items-Ready-to-Ship">
+        <h3> Items Ready to Ship</h3></div><br><br><br><br><br>
 
-<% @merchant.items_ready_to_ship_ordered_oldest_to_newest.each do |item| %>
-      <p>Name: <%= item[:name] %> - Invoice ID: <%= link_to item[:invoice_id], "/merchants/#{@merchant.id}/invoices/#{item[:invoice_id]}" %> - Date: <%= item.date.strftime('%A, %B %e, %Y') %></p>
-  <% end %>
-</section>
-
-<h3> Top 5 Customers </h3>
-  <ol>
-<% @merchant.top_5_customers_from_transactions.each do |c| %>
-    <li><b>Name:</b> <%= c.name %> | <b>Transactions: </b><%= c.num_transactions %></li><br>
-<% end %>
-  </ol>
+        <ol><% @merchant.items_ready_to_ship_ordered_oldest_to_newest.each do |item| %>
+              <p><%= item[:name] %> - Invoice #<%= link_to item[:invoice_id], "/merchants/#{@merchant.id}/invoices/#{item[:invoice_id]}" %> - <%= item.date.strftime('%A, %B %e, %Y') %></p>
+          <% end %>
+        </ol>
+      </section>
+    </div>
+    <div>
+      <div class="merch_sub"><h3> Top 5 Customers </h3></div><br><br>
+        <div class="enlarge_list"><br><br>
+          <ol>
+            <% @merchant.top_5_customers_from_transactions.each do |c| %>
+              <li><b>Name:</b> <%= c.name %> | <b>Transactions: </b><%= c.num_transactions %></li><br>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 
