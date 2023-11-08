@@ -1,5 +1,5 @@
 <body>
- <div class="admin_header"> Little Esty Shop</div><br>
+ <div class="merch_header"> Little Esty Shop</div><br>
 <div class ="nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
 <div class ="nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %></div>
 <div class ="current_button">Dashboard</div>
@@ -8,7 +8,7 @@
 
 <div class="two-columns">
   <div>
-    <div class="admin_sub">
+    <div class="merch_sub">
       <section id="Items-Ready-to-Ship">
         <h3> Items Ready to Ship</h3></div><br><br><br><br><br>
 
@@ -19,7 +19,7 @@
       </section>
     </div>
     <div>
-      <div class="admin_sub"><h3> Top 5 Customers </h3></div><br><br>
+      <div class="merch_sub"><h3> Top 5 Customers </h3></div><br><br>
         <div class="enlarge_list"><br><br>
           <ol>
             <% @merchant.top_5_customers_from_transactions.each do |c| %>
