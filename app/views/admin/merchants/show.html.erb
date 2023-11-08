@@ -3,11 +3,10 @@
 <div class ="nav_button"><%= link_to "Invoices", admin_invoices_path %> </div>
 <div class ="current_button">Merchants</div>
 <div class ="nav_button"><%= link_to "Dashboard", admin_root_path %> </div>
-<h3>Admin Dashboard</h3>
-<ol><%= link_to "Return to Merchants", "/admin/merchants" %><br><br></ol>
+<h3>Admin Dashboard</h3><br>
 
 <div class="admin_sub_header"><%= @merchant.name %></div><br>
-<ol><h4><%= link_to "Update Merchant", "/admin/merchants/#{@merchant.id}/edit" %> </h4><br>
-</ol>
+<%= link_to "Return to Merchants", "/admin/merchants" %><br>
+<h4><%= link_to "Update Merchant", "/admin/merchants/#{@merchant.id}/edit" %> </h4><br>
 
 </body>

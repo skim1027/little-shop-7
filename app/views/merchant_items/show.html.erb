@@ -1,14 +1,19 @@
-<div class="header"><h1>Little Esty Shop</h1></div>
+<div class="merch_header"><h1>Little Esty Shop</h1></div>
+<div class="merch_current_button">Current Item</div>
+<div class="merch_nav_button"><%= link_to "Update Current Item", edit_merchant_item_path %></div>
+<div class="merch_nav_button"><%= link_to "Items", merchant_items_path %></div>
+<div class="merch_nav_button"><%= link_to "Create a new item", new_merchant_item_path  %></div>
+<div class="merch_nav_button"><%= link_to "Dashboard", merchant_dashboard_index_path %></div><br><br><br>
 
-<ul>
-  <li><a> <%= @item.merchant.name %>'s Items </a></li>
-</ul>
 
-<p class="solid">My Item</p>
+<h3><%= @item.merchant.name %>'s Item</h3>
 
-<p>Item Name: <%= @item.name %></p>
-<p>Item Description: <%= @item.description %></p>
-<p>Item Unit Price: <%= @item.unit_price %></p>
+<div class="merch_subhead">Item #<%= @item.id %></div>
 
-<%= link_to "Update Item", "/merchants/#{@item.merchant.id}/items/#{@item.id}/edit" %>
+<p><b>Item Name:</b> <%= @item.name %></p>
+<p><b>Item Description:</b> <%= @item.description %></p>
+<p><b>Item Unit Price: </b><%= @item.unit_price %></p>
+
+
+
 
