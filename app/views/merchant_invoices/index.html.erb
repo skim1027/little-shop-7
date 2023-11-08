@@ -7,7 +7,7 @@
 <br><br>
 
 <div class="merch_sub_full_center">
-  <h3> My Invoices</h3></div><br><br><br><br><br>
+  <h3> My Invoices</h3></div><br>
     <ol><% @merchant.invoices.distinct.each do |i| %>
       <p>Invoice # <%= link_to i.id, "/merchants/#{@merchant.id}/invoices/#{i.id}" %></p>
     <% end %>

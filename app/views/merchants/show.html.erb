@@ -23,7 +23,7 @@
         <div class="enlarge_list"><br><br>
           <ol>
             <% @merchant.top_5_customers_from_transactions.each do |c| %>
-              <li><b>Name:</b> <%= c.name %> | <b>Transactions: </b><%= c.num_transactions %></li><br>
+              <li><%= c.name %> - <%= c.num_transactions %> purchases </li><br>
             <% end %>
           </ol>
         </div>
