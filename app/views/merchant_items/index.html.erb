@@ -12,9 +12,10 @@
       <div id="enabled_item-<%= item.id %>">
         <% if item.enable == true %>  
           <ol>
-            <p> Item Name: <%= link_to item.name, "/merchants/#{@merchant.id}/items/#{item.id}" %> 
-            
-            <%= button_to "Disable", "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, params: { :commit => "Disable" } %>
+            <div class="button-container">
+              Item Name: <%= link_to item.name, "/merchants/#{@merchant.id}/items/#{item.id}" %> 
+              <%= button_to "Disable", "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, params: { :commit => "Disable" } %>
+            </div>
           </ol>
         <% end %> 
       </div>
@@ -27,9 +28,10 @@
     <div id="disabled_item-<%= item.id %>">
       <% if item.enable == false %>
         <ol>
-          <p> Item Name: <%= link_to item.name, "/merchants/#{@merchant.id}/items/#{item.id}" %> 
-        
+          <div class="button-container">
+            Item Name: <%= link_to item.name, "/merchants/#{@merchant.id}/items/#{item.id}" %> 
           <%= button_to "Enable", "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, params: { :commit => "Enable" } %></p>
+          </div>
         </ol>
       <% end %>
     </div>
@@ -42,7 +44,7 @@
     <div id="popular_items-<%= @merchant.id %>">
       <ol><% @merchant.popular_items.each do |item|%>
           <li><h4><%= item.name %> </h4> <%= number_to_currency(item.total_revenue) %> in sales<br>
-          Top selling date: <%= item.name %> <%= item.top_sale_date %><br></li>
+          Top day for <%= item.name %> was <%= item.top_sale_date %><br></li>
         <% end %>
       </ol>
     </div>
