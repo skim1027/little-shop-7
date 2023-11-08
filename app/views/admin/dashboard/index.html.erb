@@ -21,8 +21,9 @@
         <ol>
           <% @customers.top_5_by_transaction.each do |c| %>
             <div id="topcustomer-<%= c.id %>">
-            <li> </li><%= c.name %>
+            <li> <%= c.name %>
             -  <%= c.total_successful %> purchases
+            </li>
             <% end %>
           </div>
         </ol>
