@@ -26,8 +26,13 @@ class MerchantItemsController < ApplicationController
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-    @item = @merchant.items.create(item_params)
-    redirect_to "/merchants/#{@merchant.id}/items"
+    @item = @merchant.items.new(item_params)
+    if @item.save
+      redirect_to "/merchants/#{@merchant.id}/items"
+    else
+      redirect_to "/merchants/#{@merchant.id}/items/new"
+      flash[:alert] = "Error: Please fill in all the criteria"
+    end
   end
 
   private

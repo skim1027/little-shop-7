@@ -15,9 +15,9 @@ RSpec.describe 'Merchant item update' do
       it 'has a button to update item info' do
         #US 8
         visit "/merchants/#{@merchant1.id}/items/#{@item1.id}"
-        expect(page).to have_link("Update Item")
+        expect(page).to have_link("Update Current Item")
 
-        click_link "Update Item"
+        click_link "Update Current Item"
 
         expect(current_path).to eq("/merchants/#{@merchant1.id}/items/#{@item1.id}/edit")
       end

@@ -1,5 +1,15 @@
-<h1> Invoices for <%= @merchant.name %> </h1>
+<body>
+ <div class="merch_header"> Little Esty Shop</div><br>
+ <div class ="merch_current_button">Merchant Invoices</div>
+ <div class ="merch_nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
+ <div class ="merch_nav_button"><%= link_to "Merchant Dashboard", "/merchants/#{@merchant.id}/dashboard" %></div>
+<h3> <%= @merchant.name %> </h3>
+<br><br>
 
-<% @merchant.invoices.distinct.each do |i| %>
-  <p>Invoice # <%= link_to i.id, "/merchants/#{@merchant.id}/invoices/#{i.id}" %></p>
-<% end %>
+<div class="merch_sub_full_center">
+  <h3> My Invoices</h3></div><br><br><br><br><br>
+    <ol><% @merchant.invoices.distinct.each do |i| %>
+      <p>Invoice # <%= link_to i.id, "/merchants/#{@merchant.id}/invoices/#{i.id}" %></p>
+    <% end %>
+  </ol>
+</div>
