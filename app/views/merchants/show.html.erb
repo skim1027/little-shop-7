@@ -1,23 +1,23 @@
 <body>
  <div class="merch_header"> Little Esty Shop</div><br>
-<div class ="nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
-<div class ="nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %></div>
-<div class ="current_button">Dashboard</div>
+ <div class ="merch_nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %></div>
+ <div class ="merch_nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
+ <div class ="merch_current_button">Dashboard</div>
 <h3> Name: <%= @merchant.name %></h3>
 <br><br>
 
 <div class="two-columns">
   <div>
     <div class="merch_sub">
+    <h3> Items Ready to Ship</h3></div><br><br><br><br><br>
       <section id="Items-Ready-to-Ship">
-        <h3> Items Ready to Ship</h3></div><br><br><br><br><br>
-
         <ol><% @merchant.items_ready_to_ship_ordered_oldest_to_newest.each do |item| %>
-              <p><%= item[:name] %> - Invoice #<%= link_to item[:invoice_id], "/merchants/#{@merchant.id}/invoices/#{item[:invoice_id]}" %> - <%= item.date.strftime('%A, %B %e, %Y') %></p>
+            <p><%= item[:name] %> - Invoice #<%= link_to item[:invoice_id], "/merchants/#{@merchant.id}/invoices/#{item[:invoice_id]}" %> - <%= item.date.strftime('%A, %B %e, %Y') %></p>
           <% end %>
         </ol>
       </section>
     </div>
+    
     <div>
       <div class="merch_sub"><h3> Top 5 Customers </h3></div><br><br>
         <div class="enlarge_list"><br><br>

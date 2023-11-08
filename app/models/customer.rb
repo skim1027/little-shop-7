@@ -17,4 +17,8 @@ class Customer < ApplicationRecord
       .limit(5)
   end
 
+  def total_successful
+    transactions.where(result: 'success').count
+  end
+
 end

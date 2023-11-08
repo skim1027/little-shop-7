@@ -34,6 +34,19 @@ RSpec.describe "Admin Dashboard" do
     expect(@customer4.name).to appear_before(@customer5.name)
   end
 
+  it "also includes the number of successful transactions per each customer" do
+    visit "/admin"
+    expect(page).to have_content("Top 5 Customers")
+    expected_results = Customer.top_5_by_transaction
+
+    expected_results.each do |customer|
+      within("#topcustomer-#{customer.id}") do
+      expected_count = customer.transactions.where(result: 'success').count
+        expect(page).to have_content(expected_count)
+      end
+    end
+  end
+
   ## USER STORY 22
   it "has a section for incomplete invoices with a list of IDs of all invoices not shipped" do
     visit "/admin"
