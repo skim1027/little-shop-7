@@ -1,6 +1,10 @@
-<div class="header"><h1>Little Esty Shop</h1></div>
+<div class="merch_header"><h1>Little Esty Shop</h1></div>
+<div class="merch_current_button">Edit item</div>
+<div class="merch_nav_button"><%= link_to "Items", merchant_items_path %></div>
+<div class="merch_nav_button"><%= link_to "Dashboard", merchant_dashboard_index_path %></div><br><br><br>
 
-<p class="solid">Edit Item</p>
+
+<p class="merch_subhead">Edit Item</p>
 
 <%= form_with url: "/merchants/#{@item.merchant.id}/items/#{@item.id}", method: :patch, data: { turbo:false }, local: true do |f| %>
   <%= f.hidden_field :item_update, value: "Update_item" %>
