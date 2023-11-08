@@ -22,5 +22,15 @@ RSpec.describe "merchant new page" do
       expect(page).to have_content("Best Company Ever")
       expect(Merchant.count).to eq(5)
     end
+
+    it "redirects me to the merchants new page and displays a flash message when I try to submit a new company with no name in the text field" do
+      visit "admin/merchants/new"
+
+      fill_in :new_company_name, with: ""
+      click_on("Submit")
+      expect(page).to have_current_path("/admin/merchants/new")
+      expect(page).to have_content("Company name cannot be empty")
+      expect(Merchant.count).to eq(4)
+    end
   end
 end
