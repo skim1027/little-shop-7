@@ -38,7 +38,12 @@ class Admin::MerchantsController < ApplicationController
   end
 
   def create
-    Merchant.create!(name: params[:new_company_name], enabled: false)
-    redirect_to "/admin/merchants"
+    if params[:new_company_name] != ""
+      Merchant.create!(name: params[:new_company_name], enabled: false)
+      redirect_to "/admin/merchants"
+    elsif params[:new_company_name] == ""
+      redirect_to "/admin/merchants/new"
+      flash[:alert] = "Company name cannot be empty"
+    end  
   end
 end
