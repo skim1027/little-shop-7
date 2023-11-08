@@ -29,4 +29,15 @@ RSpec.describe Customer, type: :model do
       expect(Customer.top_5_by_transaction).to eq(expected_result)
     end
   end
+
+  describe "total_successful" do
+    it "will also return how many successful transactions there are per each customer" do
+      expected_result = [@customer1, @customer2, @customer3, @customer4, @customer5]
+
+      expected_result.each do |customer|
+        expected_count = customer.transactions.where(result: 'success').count
+        expect(customer.total_successful).to eq(expected_count)
+      end
+    end
+  end
 end
