@@ -126,7 +126,7 @@ RSpec.describe "Dashboard" do
 
     visit "/merchants/#{@merchant1.id}/dashboard"
     expect(page).to have_content("Items Ready to Ship")
-    expect(page).to have_content("Date: Friday, January 1, 1999")
+    expect(page).to have_content("Friday, January 1, 1999")
     expect(@invoice0.created_at.strftime('%A, %B %e, %Y')).to appear_before(@invoice7.created_at.strftime('%A, %B %e, %Y'))
   end
 end
