@@ -21,12 +21,25 @@
   <h3> <b>Customer Name: </b> <%= @invoice.customer.name %><br></h3>
 
   <h3>Items on this Invoice:</h3>
-    <% @invoice.invoice_items.each do |ii| %>
-    <b> Item Name: </b> <%= ii.item.name %><br>
-    <b> Quantity: </b> <%= ii.quantity %><br>
-    <b> Unit Price: </b> $<%= ii.price %><br>
-    <b> Status: </b> <%= ii.status.capitalize %><br><br>
-    <% end %>
-
 </ol>
+
+<div class="table" role="region" tabindex="0">
+  <table>
+    <tr>
+      <th>Item Name</th>
+      <th>Quantity</th>
+      <th>Unit Price</th>
+      <th>Status</th>
+    </tr>
+    <% @invoice.invoice_items.each do |ii| %>
+    <tr>
+      <td><%= ii.item.name %></td>
+      <td><%= ii.quantity %></td>
+      <td><%= ii.price %></td>
+      <td><%= ii.status.capitalize %></td>
+    </tr>
+      <% end %>
+  </table>
+</div>
+
 </body>

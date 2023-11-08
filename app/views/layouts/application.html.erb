@@ -193,6 +193,38 @@
         text-align: center;
       }
 
+      /* REFORMATTING INTO TABLES */
+      .table {
+        overflow: auto;
+        width: 100%;
+      }
+      .table table {
+        border: 1.5px solid #000000;
+        height: 100%;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        border-spacing: 1px;
+        text-align: center;
+      }
+      .table th {
+          border: 1.5px solid #000000;
+          background-color: #775fb9;
+          color: #fffafa;
+          padding: 5px;
+      }
+      .table td {
+          border: 1.5px solid #000000;
+          padding: 5px;
+      }
+      .table tr:nth-child(even) td {
+          background-color: #ffffff;
+          color: #000000;
+      }
+      .table tr:nth-child(odd) td {
+          background-color: #e3d5f0;
+          color: #000000;
+      }
     </style>
 
     <% flash.each do |type, message| %>
