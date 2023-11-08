@@ -8,7 +8,6 @@
 <h3><u>Create a New Company</u></h3>
 
 <%= form_with url: "/admin/merchants", method: :post, data: {turbo: false}, local: true do |m| %>
-  <%= m.hidden_field :item_add, value: "Add_item" %>
   <%= m.label "New Company Name" %>
   <%= m.text_field :new_company_name %>
   <%= m.submit "Submit" %>
