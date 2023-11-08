@@ -1,16 +1,21 @@
-<div class="header"><h1>Little Etsy Shop</h1></div>
+<body>
+ <div class="merch_header"> Little Esty Shop</div><br>
+ <div class ="merch_nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@merchant.id}/invoices" %></div>
+ <div class ="merch_nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
+ <div class ="merch_nav_button"><%= link_to "Merchant Dashboard", "/merchants/#{@merchant.id}/dashboard" %></div>
+<h3> <%= @merchant.name %> </h3>
+<br><br>
 
-<ul>
-  <li><a> <%= @invoice.items.first.merchant.name %>'s Invoices </a></li>
-</ul>
-
-<p class="solid">My Invoice</p>
-
-<p>Invoice ID: <%= @invoice.id %></p>
+<div class="merch_sub_full_center">
+ <h3> Invoice #<%= @invoice.id %></h3></div><br><br><br><br><br>
 <p>Invoice Status: <%= @invoice.status %></p>
 <p>Invoice Date: <%= @invoice.created_at.strftime('%A, %B %d, %Y') %></p>
 
+<p>Total Revenue: <%= number_to_currency(@invoice.potential_revenue, unit: "$") %></p>
+
 <p>Customer Name: <%= @invoice.customer.name %></p>
+
+</div>
 
 <p class="solid">Invoice Items</p>
 <% @invoice.items.each do |item| %>
@@ -33,6 +38,5 @@
   <% end %>
 <% end %>
 
-<p class="solid">Total Revenue</p>
-<p>Total Revenue: <%= number_to_currency(@invoice.potential_revenue, unit: "$") %></p>
+
 
