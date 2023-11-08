@@ -20,7 +20,9 @@
       <div class="enlarge_list"><br><br>
         <ol>
           <% @customers.top_5_by_transaction.each do |c| %>
-          <li> </li><%= c.name %><br>
+          <li>
+            <%= c.name %><br>
+          </li>
           <% end %>
         </ol>
       </div>
