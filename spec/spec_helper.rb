@@ -70,6 +70,11 @@ def test_data_2
   @customer1 = create(:customer)
   @customer2 = create(:customer)
   @customer3 = create(:customer)
+require 'pry'; binding.pry
+  @disc1 = @merchant1.bulk_discounts.create!(discount_percent: 30, threshold: 50)
+  @disc2 = @merchant1.bulk_discounts.create!(discount_percent: 10, threshold: 20)
+  @disc3 = @merchant1.bulk_discounts.create!(discount_percent: 20, threshold: 30)
+  discounts = [@disc1, @disc2, @disc3]
 
   @item1 = create(:item, name: "hat", description: "cool hat", unit_price: 10, merchant_id: @merchant1.id)
   @item2 = create(:item, name: "straw", description: "it is for drinking", unit_price: 1, merchant_id: @merchant1.id)
@@ -178,6 +183,26 @@ def test_data_joseph
   @transaction1 = create(:transaction, result: 1, invoice_id: @invoice1.id)
   @transaction2 = create(:transaction, result: 1, invoice_id: @invoice2.id)
   @transaction3 = create(:transaction, result: 1, invoice_id: @invoice3.id)
+end
+
+def test_data_4
+  @merchant11 = create(:merchant, name: "CandyLand")
+  @customer0 = Customer.create(first_name: "Angus", last_name: "Turing")
+  
+  @invoice0 = @customer0.invoices.create(status: 1, created_at: Time.new(2023, 1, 1))
+  @invoice7 = @customer0.invoices.create(status: 1, created_at: Time.new(2023, 1, 3))
+
+  @item20 = @merchant11.items.create(name: "Bat", description: "Bat", unit_price: 200)
+  @item30 = @merchant11.items.create(name: "Cat", description: "Cat", unit_price: 300)
+  @item40 = @merchant11.items.create(name: "Rat", description: "Rat", unit_price: 400)
+
+  @transaction0 = @invoice0.transactions.create(credit_card_number: 1234, credit_card_expiration_date: 01/11, result: 1)
+  @transaction7 = @invoice0.transactions.create(credit_card_number: 1234, credit_card_expiration_date: 01/11, result: 1)
+
+  @ii1 = create(:invoice_item, item: @item20, invoice: @invoice0, status: 0)
+  @ii2 = create(:invoice_item, item: @item30, invoice: @invoice0, status: 1)
+  @ii3 = create(:invoice_item, item: @item40, invoice: @invoice0, status: 2)
+  @ii7 = create(:invoice_item, item: @item30, invoice: @invoice0, status: 2)
 end
 
 RSpec.configure do |config|
