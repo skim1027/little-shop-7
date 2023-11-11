@@ -1,9 +1,11 @@
 <div class="merch_header"> Little Esty Shop</div><br>
+<p><%= link_to "Create a New Discount", new_merchant_bulk_discount_path(@merchant) %></p>
 
-<p><% @discounts.each do |discount| %></p>
+<% @discounts.each do |discount| %>
   <div id="discount-<%= discount.id %>">
     <p><%= link_to "Discount Number: #{discount.id}", "/merchants/:merchant_id/bulk_discounts/#{discount.id}" %></p>
     <li>Discount Percent: <%= discount.discount_percent %>%</li>
     <li>Quantity Threshold: <%= discount.threshold %> items</li>
   </div>
 <% end %>
+
