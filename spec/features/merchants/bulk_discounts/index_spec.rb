@@ -12,7 +12,6 @@ RSpec.describe "bulk discounts index page" do
         visit merchant_bulk_discounts_path(@merchant1)
               
         within("#discount-#{@disc1.id}") do
-        save_and_open_page
           expect(page).to have_content("Discount Number: #{@disc1.id}")
           expect(page).to have_content("Discount Percent: #{@disc1.discount_percent}%")
           expect(page).to have_content("Quantity Threshold: #{@disc1.threshold} items")
@@ -38,6 +37,34 @@ RSpec.describe "bulk discounts index page" do
         expect(page).to have_link("Discount Number: #{@disc1.id}")
         expect(page).to have_link("Discount Number: #{@disc2.id}")
         expect(page).to have_link("Discount Number: #{@disc3.id}")
+      end
+
+      it 'has a link to create a new discount, link takes you to a new page, when you submit new discount, it re-routes to index page' do
+        # Solo US 2
+        visit merchant_bulk_discounts_path(@merchant1)
+
+        expect(page).to have_link("Create a New Discount")
+
+        click_link("Create a New Discount")
+
+        expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant1))
+
+        expect(page).to have_field("Discount Percent")
+        expect(page).to have_field("Quantity Threshold")
+
+        fill_in("Discount Percent", with: 40)
+        fill_in("Quantity Threshold", with: 40)
+
+        click_button("Submit")
+
+        expect(current_path).to eq(merchant_bulk_discounts_path(@merchant1))
+        
+        new_discount = @merchant1.bulk_discounts.last
+
+        within("#discount-#{new_discount.id}") do
+          expect(page).to have_content("Discount Percent: 40")
+          expect(page).to have_content("Quantity Threshold: 40")
+        end
       end
     end
   end

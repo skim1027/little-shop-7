@@ -1,0 +1,13 @@
+<div class="merch_header"> Little Esty Shop</div><br>
+
+
+<%= form_with url: "/merchants/#{@merchant.id}/bulk_discounts", method: :post, data: { turbo:false }, local: true do |f| %>
+  <%= f.hidden_field :discount_add, value: "New_discount" %>
+  <%= f.label :discount_percent, "Discount Percent" %>
+  <%= f.text_field :discount_percent %>
+
+  <%= f.label :threshold, "Quantity Threshold" %>
+  <%= f.text_field :threshold %>
+
+  <%= f.submit "Submit" %>
+<% end %>
