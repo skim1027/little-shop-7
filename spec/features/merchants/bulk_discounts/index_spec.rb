@@ -66,6 +66,17 @@ RSpec.describe "bulk discounts index page" do
           expect(page).to have_content("Quantity Threshold: 40")
         end
       end
+
+      it 'needs all field filled in to create new discount' do
+        visit new_merchant_bulk_discount_path(@merchant1)
+
+        fill_in("Discount Percent", with: 40)
+
+        click_button("Submit")
+
+        expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant1))
+        expect(page).to have_content("Error: Fill in all criteria with integer")
+      end
     end
   end
 end

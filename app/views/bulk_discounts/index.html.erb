@@ -1,5 +1,5 @@
 <div class="merch_header"> Little Esty Shop</div><br>
-<p><%= link_to "Create a New Discount", new_merchant_bulk_discount_path(@discounts.first.merchant_id) %></p>
+<p><%= link_to "Create a New Discount", new_merchant_bulk_discount_path(@merchant) %></p>
 
 <% @discounts.each do |discount| %>
   <div id="discount-<%= discount.id %>">
