@@ -10,36 +10,34 @@ RSpec.describe "bulk discounts index page" do
       it 'shows all the discounts including percentage and thresholds' do
         # Solo US 1
         visit merchant_bulk_discounts_path(@merchant1)
-      
-        expect(page).to have_content("Bulk Discount A")
-        expect(page).to have_content("Bulk Discount B")
-        expect(page).to have_content("Bulk Discount C")
-        
-        discounts.each do |discount|
-          within("#discount-#{discount.id}") do
-            expect(page).to have_content("Discount Percent: #{discount.discount_percent}")
-            expect(page).to have_content("Quantity Threshold: #{discount.threshold}")
-          end
+              
+        within("#discount-#{@disc1.id}") do
+        save_and_open_page
+          expect(page).to have_content("Discount Number: #{@disc1.id}")
+          expect(page).to have_content("Discount Percent: #{@disc1.discount_percent}%")
+          expect(page).to have_content("Quantity Threshold: #{@disc1.threshold} items")
         end
-
-        # within("#discount-#{@disc2.id}") do
-        #   expect(page).to have_content("Discount Percent: #{@disc2.discount_percent}")
-        #   expect(page).to have_content("Quantity Threshold: #{@disc2.threshold}")
-        # end
-        
-        # within("#discount-#{@disc3.id}") do
-        #   expect(page).to have_content("Discount Percent: #{@disc3.discount_percent}")
-        #   expect(page).to have_content("Quantity Threshold: #{@disc3.threshold}")
-        # end
+      
+        within("#discount-#{@disc2.id}") do
+          expect(page).to have_content("Discount Number: #{@disc2.id}")
+          expect(page).to have_content("Discount Percent: #{@disc2.discount_percent}%")
+          expect(page).to have_content("Quantity Threshold: #{@disc2.threshold} items")
+        end
+    
+        within("#discount-#{@disc3.id}") do
+          expect(page).to have_content("Discount Number: #{@disc3.id}")
+          expect(page).to have_content("Discount Percent: #{@disc3.discount_percent}%")
+          expect(page).to have_content("Quantity Threshold: #{@disc3.threshold} items")
+        end
       end
 
       it 'has a link to the discount show page' do
         # Solo US 1
         visit merchant_bulk_discounts_path(@merchant1)
 
-        expect(page).to have_link("Bulk Discount A")
-        expect(page).to have_link("Bulk Discount B")
-        expect(page).to have_link("Bulk Discount D")
+        expect(page).to have_link("Discount Number: #{@disc1.id}")
+        expect(page).to have_link("Discount Number: #{@disc2.id}")
+        expect(page).to have_link("Discount Number: #{@disc3.id}")
       end
     end
   end

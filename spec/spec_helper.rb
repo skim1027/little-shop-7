@@ -70,7 +70,7 @@ def test_data_2
   @customer1 = create(:customer)
   @customer2 = create(:customer)
   @customer3 = create(:customer)
-require 'pry'; binding.pry
+  
   @disc1 = @merchant1.bulk_discounts.create!(discount_percent: 30, threshold: 50)
   @disc2 = @merchant1.bulk_discounts.create!(discount_percent: 10, threshold: 20)
   @disc3 = @merchant1.bulk_discounts.create!(discount_percent: 20, threshold: 30)
