@@ -74,7 +74,7 @@ def test_data_2
   @disc1 = @merchant1.bulk_discounts.create!(discount_percent: 30, threshold: 50)
   @disc2 = @merchant1.bulk_discounts.create!(discount_percent: 10, threshold: 20)
   @disc3 = @merchant1.bulk_discounts.create!(discount_percent: 20, threshold: 30)
-  discounts = [@disc1, @disc2, @disc3]
+
 
   @item1 = create(:item, name: "hat", description: "cool hat", unit_price: 10, merchant_id: @merchant1.id)
   @item2 = create(:item, name: "straw", description: "it is for drinking", unit_price: 1, merchant_id: @merchant1.id)
