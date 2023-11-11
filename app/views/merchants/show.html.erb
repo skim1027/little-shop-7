@@ -4,6 +4,7 @@
  <div class ="merch_nav_button"><%= link_to "Merchant Items", "/merchants/#{@merchant.id}/items" %></div>
  <div class ="merch_current_button">Merchant Dashboard</div>
 <h3> Name: <%= @merchant.name %></h3>
+<p><%= link_to "View All My Discounts", merchant_bulk_discounts_path(@merchant) %></p>
 <br><br>
 
 <div class="two-columns">
@@ -23,7 +24,7 @@
         <div class="enlarge_list"><br><br>
           <ol>
             <% @merchant.top_5_customers_from_transactions.each do |c| %>
-              <li><%= c.name %> - <%= c.num_transactions %> purchases </li><br>
+              <li><%= c.name %> - <%= c.num_transactions %> purchases </li>
             <% end %>
           </ol>
         </div>

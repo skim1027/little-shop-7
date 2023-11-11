@@ -13,3 +13,248 @@
  *= require_tree .
  *= require_self
  */
+  /*Merchant Styles*/
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .merch_header {
+    font-family: Arial;
+    font-size:30px;
+    font-weight: bold;
+    background-color: mediumseagreen;
+    padding: 20px;
+    text-align: center;
+  }
+  .merch_subhead {
+    font-family: Arial;
+    background-color: mediumseagreen;
+    border-top: 2px solid #622583;
+    font-size:21px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .merch_current_button {
+    background-color: mediumseagreen;
+    border-radius:22px;
+    display:inline-block;
+    font-family:Arial;
+    font-size:12px;
+    padding:16px 19px;
+    text-decoration:none;
+    float: right;
+  }
+
+  .merch_nav_button {
+    border-radius:22px;
+    display:inline-block;
+    cursor:pointer;
+    font-family:Arial;
+    font-size:12px;
+    padding:16px 19px;
+    text-decoration:none;
+    float: right;
+  }
+  .merch_nav_button:hover {
+    background-color: mediumseagreen;
+  }
+  .merch_nav_button:active {
+    position:relative;
+    top:1px;
+  }
+
+  .merch_sub {
+    font-family: Arial;
+    background-color: mediumseagreen;
+    border-top: 2px solid #622583;
+    padding: 2px 200px;
+    text-align: center;
+    float: left;
+  }
+
+  .merch_sub_full_center {
+    font-family: Arial;
+    background-color: mediumseagreen;
+    border-top: 2px solid #622583;
+    padding: 2px 200px;
+    text-align: center;
+  }
+
+/* REFORMATTING INTO TABLES MERCH ONLY*/
+  .m_table {
+    overflow: auto;
+    width: 100%;
+  }
+  .m_table table {
+    border: 1.5px solid #000000;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: center;
+  }
+  .m_table th {
+      border: 1.5px solid #000000;
+      background-color: seagreen;
+      color: #fffafa;
+      padding: 5px;
+  }
+  .m_table td {
+      border: 1.5px solid #000000;
+      padding: 5px;
+  }
+  .m_table tr:nth-child(even) td {
+      background-color: #ffffff;
+      color: #000000;
+  }
+  .m_table tr:nth-child(odd) td {
+      background-color: #8FBC8F;
+      color: #000000;
+  }
+
+  /* USED FOR SPLITTING INDEX COLUMNS, USED FOR BOTH MERCH AND ADMIN*/
+  .two-columns{
+    display:flex;
+  }
+
+  .two-columns > * {
+    width: 50%;
+    padding: 1rem;
+  }
+
+  /* USED FOR TRIPLE SPLITTING INDEX COLUMNS, USED FOR BOTH MERCH AND ADMIN */
+  .three-columns{
+    display:flex;
+  }
+
+  .three-columns > * {
+    width: 33%;
+    padding: 1rem;
+  }
+
+  /* USED FOR SHORTENING A PAGE WITH MULTIPLE COLUMNS */
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+
+  .button-container {
+    white-space: nowrap; 
+    /* Prevent line breaks */
+  }
+
+  .button-container form {
+    display: inline-block; 
+    /* Display the forms horizontally */
+    margin-right: 4px; 
+    /* Add some spacing between the buttons */
+  }
+
+  /* ADMIN FORMATTING CSS */
+  .admin_header {
+    font-family: Arial;
+    font-size:30px;
+    font-weight: bold;
+    background-color: #bcb0eb;
+    padding: 20px;
+    text-align: center;
+  }
+  .admin_sub_header {
+    font-family: Arial;
+    font-size:21px;
+    border-top: 2px solid #622583;
+    font-weight: bold;
+    background-color: #bcb0eb;
+    padding: 20px;
+    text-align: center;
+  }
+  .current_button {
+    background-color:#bcb0eb;
+    border-radius:22px;
+    display:inline-block;
+    font-family:Arial;
+    font-size:12px;
+    padding:16px 19px;
+    text-decoration:none;
+    float: right;
+  }
+  .nav_button {
+    border-radius:22px;
+    display:inline-block;
+    cursor:pointer;
+    font-family:Arial;
+    font-size:12px;
+    padding:16px 19px;
+    text-decoration:none;
+    float: right;
+  }
+  .nav_button:hover {
+    background-color:#d5b0eb;
+  }
+  .nav_button:active {
+    position:relative;
+    top:1px;
+  }
+  .admin_sub {
+    font-family: Arial;
+    background-color: #bcb0eb;
+    border-top: 2px solid #622583;
+    padding: 2px 200px;
+    text-align: center;
+    float: left;
+  }
+
+  /*CAN BE USED FOR BOTH ADMIN AND MERCH*/
+  .enlarge_list {
+    font-size:20px;
+    line-height: 1.5;
+  }
+
+  .flash_message {
+    font-family: Arial;
+    font-size:15px;
+    border: 2px solid #f50a0a;
+    font-weight: bold;
+    background-color: #f8cef7;
+    padding: 5px;
+    text-align: center;
+  }
+
+  /* REFORMATTING INTO TABLES */
+  .table {
+    overflow: auto;
+    width: 100%;
+  }
+  .table table {
+    border: 1.5px solid #000000;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: center;
+  }
+  .table th {
+      border: 1.5px solid #000000;
+      background-color: #775fb9;
+      color: #fffafa;
+      padding: 5px;
+  }
+  .table td {
+      border: 1.5px solid #000000;
+      padding: 5px;
+  }
+  .table tr:nth-child(even) td {
+      background-color: #ffffff;
+      color: #000000;
+  }
+  .table tr:nth-child(odd) td {
+      background-color: #e3d5f0;
+      color: #000000;
+  }
