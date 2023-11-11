@@ -68,6 +68,7 @@ RSpec.describe "bulk discounts index page" do
       end
 
       it 'needs all field filled in to create new discount' do
+        # Solo US 2
         visit new_merchant_bulk_discount_path(@merchant1)
 
         fill_in("Discount Percent", with: 40)
@@ -76,6 +77,20 @@ RSpec.describe "bulk discounts index page" do
 
         expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant1))
         expect(page).to have_content("Error: Fill in all criteria with integer")
+      end
+
+      it 'can delete discount, and redirect to discount index page' do
+        # Solo US 3
+        visit merchant_bulk_discounts_path(@merchant1)
+        
+        within("#discount-#{@disc1.id}") do
+          expect(page).to have_content("Delete")
+          
+          click_button("Delete")
+        end
+
+        expect(current_path).to eq(merchant_bulk_discounts_path(@merchant1))
+        expect(page).to_not have_content("Discount Number: #{@disc1.id}")
       end
     end
   end
