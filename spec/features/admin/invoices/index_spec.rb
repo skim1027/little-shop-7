@@ -85,7 +85,7 @@ RSpec.describe "Admin Invoices Index" do
       end
     end
 
-    xit "can sort by date newest to oldest" do
+    it "can sort by date newest to oldest" do
       visit "/admin/invoices"
       click_button "Sort by Date, Newest-Oldest"
       expect(current_path).to eq("/admin/invoices")

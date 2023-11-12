@@ -8,6 +8,7 @@ RSpec.describe "bulk discounts show page" do
   describe 'as a visitor' do
     describe 'when I visit /merchants/:merchant_id/bulk_discounts/:discount_id' do
       it 'shows the discount quantity threshold and percentage discount' do
+        # Solo US 4
         visit merchant_bulk_discount_path(@merchant1, @disc1)
 
         expect(page).to have_content("Discount Number #{@disc1.id} Information")
@@ -16,6 +17,7 @@ RSpec.describe "bulk discounts show page" do
       end
 
       it 'has an edit link, when clicked, shows pre-populated info, and when submitted, redirects to show page with updated info' do
+        # Solo US 5
         visit merchant_bulk_discount_path(@merchant1, @disc1)
 
         expect(page).to have_content("Discount Percent: 30%")
