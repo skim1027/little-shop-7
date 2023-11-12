@@ -40,7 +40,7 @@ RSpec.describe "Admin Invoices Show" do
   end
 
   ## USER STORY 35
-  xit "displays the total potential revenue of the invoice" do
+  it "displays the total potential revenue of the invoice" do
     visit "/admin/invoices/#{@test_invoice.id}"
     expected_total = 0
     @test_invoice.invoice_items.each do |ii|
