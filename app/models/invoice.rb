@@ -24,6 +24,16 @@ class Invoice < ApplicationRecord
     (invoice_items.sum("unit_price * quantity") * 0.01).round(2)
   end
 
+  def discounted_revenue
+    # InvoiceItem.select("invoice_items.id, ((invoice_items.quantity * invoice_items.unit_price) - ((invoice_items.quantity * invoice_items.unit_price) * (MAX(bulk_discounts.discount_percent)/100))) as discounted_revenue")
+    # .joins(item: {merchant: :bulk_discounts})
+    # .where('invoice_items.quantity >= bulk_discounts.threshold')
+    # .group('invoice_items.id')
+    # .sum(&:discounted_revenue)
+    
+    # require 'pry'; binding.pry
+  end
+
   def self.sort_alphabetical
     Invoice.all.order(id: :asc)
   end

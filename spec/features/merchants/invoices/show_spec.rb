@@ -97,7 +97,29 @@ RSpec.describe 'merchant invoices show page (/merchants/:merchant_id/invoices/:i
         # Solo US 6
         visit merchant_invoice_path(@merchant90, @invoice30)
         expect(page).to have_content("Total Revenue: $#{@invoice30.potential_revenue}")
-        expect(page).to have_content("Total Discounted Revenue: $83.00")
+        expect(page).to have_content("Total Discounted Revenue: $#{@invoice30.discounted_revenue}")
+      end
+
+      it 'shows links to applied discounts' do
+        # Solo US 7
+        test_data_4
+        visit merchant_invoice_path(@merchant90, @invoice30)
+
+        within("#item-#{@item90.id}") do
+          expect(page).to have_link("Discount Applied")
+        end
+        
+        within("#item-#{@item92.id}") do
+          expect(page).to have_link("Discount Applied")
+        end
+        
+        within("#item-#{@item93.id}") do
+          expect(page).to have_link("Discount Applied")
+        end
+
+        within("#item-#{@item91.id}") do
+          expect(page).to_not have_link("Discount Applied")
+        end
       end
     end
   end
