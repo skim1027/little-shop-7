@@ -12,5 +12,5 @@ RSpec.describe BulkDiscount, type: :model do
   describe "validations" do
     it { should validate_presence_of(:discount_percent) }
     it { should validate_presence_of(:threshold) }
-end
+  end
 end

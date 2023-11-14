@@ -29,4 +29,10 @@ RSpec.describe InvoiceItem, type: :model do
       expect(testing_invoice.price).to eq(25.99)
     end
   end
+
+  describe 'discounted_revenue' do
+    it 'shows the discounted revenue of the invoice' do
+      # expect().to 'eq'()
+    end
+  end
 end
