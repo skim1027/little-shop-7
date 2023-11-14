@@ -1,10 +1,6 @@
 require "rails_helper"
 
 RSpec.describe InvoiceItem, type: :model do
-  before :each do
-    test_data 
-  end
-
   describe "relationships" do
     it { should belong_to(:invoice) }
     it { should belong_to(:item) }
@@ -25,8 +21,23 @@ RSpec.describe InvoiceItem, type: :model do
 
   describe '#price' do
     it 'returns the invoice item unit price with a decimal' do
+      test_data 
       testing_invoice = create(:invoice_item, unit_price: 2599)
       expect(testing_invoice.price).to eq(25.99)
+    end
+  end
+
+  describe 'discounted_revenue' do
+    it 'shows the discounted revenue of the invoice' do
+      test_data_4
+      expect(@invoice30.invoice_items.discounted_revenue).to eq(83.00)
+    end
+  end
+
+  describe 'top_discount' do
+    it 'gives the bulk_discounts id of the top discount applied' do
+      test_data_4
+      expect(@invoice_item91.top_discount).to eq(@disc3.id)
     end
   end
 end

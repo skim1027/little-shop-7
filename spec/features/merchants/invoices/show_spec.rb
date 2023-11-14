@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant invoices index page (/merchants/:merchant_id/invoices)' do
+RSpec.describe 'merchant invoices show page (/merchants/:merchant_id/invoices/:invoice_id)' do
   
-  before :each do
-    test_data_2
-    @invoices = [@invoice1, @invoice2, @invoice3]
-  end
+  describe 'when I visit /merchants/:merchant_id/invoices/:invoice_id' do
+    before :each do
+      test_data_2
+      @invoices = [@invoice1, @invoice2, @invoice3]
+    end
 
-  describe 'when I visit /merchants/:merchant_id/invoices' do
     it 'shows all the invoices that include at least on of my merchant items' do
       #US 15
       visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
@@ -16,6 +16,7 @@ RSpec.describe 'merchant invoices index page (/merchants/:merchant_id/invoices)'
       expect(page).to have_content(@invoice1.created_at.strftime('%A, %B %d, %Y'))
       expect(page).to have_content(@invoice1.customer.name)
     end
+    
     
     it "shows item and invoice_item information on the invoice" do
       # US 16 
@@ -35,7 +36,6 @@ RSpec.describe 'merchant invoices index page (/merchants/:merchant_id/invoices)'
       expect(page).to have_content(@item6.unit_price)
       expect(page).to have_content(@item7.unit_price)
       expect(page).to have_content(@item8.unit_price)
-
 
       expect(page).to have_content(@invoice_item1.status)
       expect(page).to have_content(@invoice_item2.status)
@@ -58,7 +58,7 @@ RSpec.describe 'merchant invoices index page (/merchants/:merchant_id/invoices)'
       # US 17 
       visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
       expect(page).to have_content("Total Revenue")
-      expect(page).to have_content("$414.17")
+      expect(page).to have_content("$#{@invoice1.potential_revenue}")
     end
 
     it "has select field for each invoice_item status that can be updated" do
@@ -89,5 +89,39 @@ RSpec.describe 'merchant invoices index page (/merchants/:merchant_id/invoices)'
       expect(@invoice_item1.status).to eq("pending")
     end
   end 
+
+  describe 'as a visitor' do
+    describe 'when I visit /merchants/:merchant_id/invoices/:invoice_id' do
+      it 'shows total revenue and total discounted revenue' do
+        test_data_4
+        # Solo US 6
+        visit merchant_invoice_path(@merchant90, @invoice30)
+        expect(page).to have_content("Total Revenue: $#{@invoice30.potential_revenue}")
+        expect(page).to have_content("Total Discounted Revenue: $#{@invoice30.invoice_items.discounted_revenue}")
+      end
+
+      it 'shows links to applied discounts' do
+        # Solo US 7
+        test_data_4
+        visit merchant_invoice_path(@merchant90, @invoice30)
+
+        within("#item-#{@item90.id}") do
+          expect(page).to have_link("Discount Applied")
+        end
+        
+        within("#item-#{@item92.id}") do
+          expect(page).to have_link("Discount Applied")
+        end
+        
+        within("#item-#{@item93.id}") do
+          expect(page).to have_link("Discount Applied")
+        end
+
+        within("#item-#{@item91.id}") do
+          expect(page).to_not have_link("Discount Applied")
+        end
+      end
+    end
+  end
 end
 

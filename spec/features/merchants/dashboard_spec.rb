@@ -1,11 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "Dashboard" do
-  before :each do
-    test_data 
-  end
-
+  
   describe 'as a visitor' do
+    before :each do
+      test_data 
+      @disc1 = @merchant1.bulk_discounts.create!(discount_percent: 30, threshold: 1)
+    end
     describe 'when I visit /merchant/:merchant_id/dashboard' do
       it "shows the name of the merchant" do
         #US 1
@@ -129,17 +130,19 @@ RSpec.describe "Dashboard" do
       end
     end
 
-    describe 'when I visit /merchant/:merchant_id/dashboard' do
-      it 'has a link to view all discounts, link takes you to discounts index page' do
-        #Solo US 1
-        visit merchant_dashboard_index_path(@merchant1)
-        
-        expect(page).to have_link('View All My Discounts')
-        
-        click_link('View All My Discounts')
-        
-        expect(current_path).to eq(merchant_bulk_discounts_path(@merchant1))
-      end
+  end
+  
+  describe 'when I visit /merchant/:merchant_id/dashboard' do
+    it 'has a link to view all discounts, link takes you to discounts index page' do
+      @merchant1 = create(:merchant, name: "Target")
+      #Solo US 1
+      visit merchant_dashboard_index_path(@merchant1)
+      
+      expect(page).to have_link('View All My Discounts')
+      
+      click_link('View All My Discounts')
+      
+      expect(current_path).to eq(merchant_bulk_discounts_path(@merchant1))
     end
   end
 end

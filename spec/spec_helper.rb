@@ -26,6 +26,8 @@ def test_data
 
   @test_customers = [@customer1, @customer2, @customer3, @customer4, @customer5]
   
+  @disc1 = @merchant1.bulk_discounts.create!(discount_percent: 30, threshold: 1)
+
   @item1 = create(:item, merchant_id: @merchant1.id)
   @item2 = create(:item, merchant_id: @merchant1.id)
   @item3 = create(:item, merchant_id: @merchant1.id)
@@ -94,9 +96,10 @@ def test_data_2
   @invoice_item3 = InvoiceItem.create(item_id: @item3.id, invoice_id: @invoice1.id, quantity: 202, unit_price: 100, status: 2)
   @invoice_item4 = InvoiceItem.create(item_id: @item4.id, invoice_id: @invoice1.id, quantity: 2, unit_price: 10000, status: 2)
   @invoice_item6 = InvoiceItem.create(item_id: @item6.id, invoice_id: @invoice1.id, quantity: 4, unit_price: 8, status: 2)
-  @invoice_item5 = InvoiceItem.create(item_id: @item7.id, invoice_id: @invoice3.id, quantity: 400, unit_price: 5, status: 2)
   @invoice_item7 = InvoiceItem.create(item_id: @item7.id, invoice_id: @invoice1.id, quantity: 5, unit_price: 5, status: 2)
   @invoice_item8 = InvoiceItem.create(item_id: @item8.id, invoice_id: @invoice1.id, quantity: 40, unit_price: 3, status: 2)
+
+  @invoice_item5 = InvoiceItem.create(item_id: @item7.id, invoice_id: @invoice3.id, quantity: 400, unit_price: 5, status: 2)
   @invoice_item9 = InvoiceItem.create(item_id: @item8.id, invoice_id: @invoice2.id, quantity: 4, unit_price: 10, status: 2)
   @invoice_item10 = InvoiceItem.create(item_id: @item7.id, invoice_id: @invoice2.id, quantity: 40, unit_price: 5, status: 2)
   @invoice_item11 = InvoiceItem.create(item_id: @item6.id, invoice_id: @invoice2.id, quantity: 3, unit_price: 8, status: 2)
@@ -186,23 +189,27 @@ def test_data_joseph
 end
 
 def test_data_4
-  @merchant11 = create(:merchant, name: "CandyLand")
-  @customer0 = Customer.create(first_name: "Angus", last_name: "Turing")
+  @merchant90 = create(:merchant, name: "Target")
+
+  @customer90 = create(:customer)
   
-  @invoice0 = @customer0.invoices.create(status: 1, created_at: Time.new(2023, 1, 1))
-  @invoice7 = @customer0.invoices.create(status: 1, created_at: Time.new(2023, 1, 3))
+  @disc1 = @merchant90.bulk_discounts.create!(discount_percent: 30, threshold: 50)
+  @disc2 = @merchant90.bulk_discounts.create!(discount_percent: 10, threshold: 20)
+  @disc3 = @merchant90.bulk_discounts.create!(discount_percent: 20, threshold: 30)
 
-  @item20 = @merchant11.items.create(name: "Bat", description: "Bat", unit_price: 200)
-  @item30 = @merchant11.items.create(name: "Cat", description: "Cat", unit_price: 300)
-  @item40 = @merchant11.items.create(name: "Rat", description: "Rat", unit_price: 400)
+  @item90 = create(:item, name: "hat", description: "cool hat", unit_price: 100, merchant_id: @merchant90.id)
+  @item91 = create(:item, name: "straw", description: "it is for drinking", unit_price: 50, merchant_id: @merchant90.id)
+  @item92 = create(:item, name: "phone", description: "retro phone", unit_price: 150, merchant_id: @merchant90.id)
+  @item93 = create(:item, name: "bike", description: "mountain bike", unit_price: 100, merchant_id: @merchant90.id)
 
-  @transaction0 = @invoice0.transactions.create(credit_card_number: 1234, credit_card_expiration_date: 01/11, result: 1)
-  @transaction7 = @invoice0.transactions.create(credit_card_number: 1234, credit_card_expiration_date: 01/11, result: 1)
+  @invoice30 = create(:invoice, status: 1, customer_id: @customer90.id, created_at: Time.new(2023, 1, 1)) #sunday
 
-  @ii1 = create(:invoice_item, item: @item20, invoice: @invoice0, status: 0)
-  @ii2 = create(:invoice_item, item: @item30, invoice: @invoice0, status: 1)
-  @ii3 = create(:invoice_item, item: @item40, invoice: @invoice0, status: 2)
-  @ii7 = create(:invoice_item, item: @item30, invoice: @invoice0, status: 2)
+  @invoice_item91 = InvoiceItem.create(item_id: @item90.id, invoice_id: @invoice30.id, quantity: 40, unit_price: 100, status: 2)
+  @invoice_item92 = InvoiceItem.create(item_id: @item91.id, invoice_id: @invoice30.id, quantity: 10, unit_price: 50, status: 2)
+  @invoice_item93 = InvoiceItem.create(item_id: @item92.id, invoice_id: @invoice30.id, quantity: 20, unit_price: 150, status: 2)
+  @invoice_item94 = InvoiceItem.create(item_id: @item93.id, invoice_id: @invoice30.id, quantity: 30, unit_price: 100, status: 2)
+
+  @transaction91 = create(:transaction, result: 1, invoice_id: @invoice30.id)
 end
 
 RSpec.configure do |config|

@@ -48,7 +48,7 @@ RSpec.describe Invoice, type: :model do
       @test_invoice.invoice_items.each do |ii|
         expected_total+=(ii.unit_price * ii.quantity)
       end
-      expected_total = (0.01 * expected_total).round(2)
+      expected_total = (0.01 * expected_total)
       expect(@test_invoice.potential_revenue).to eq(expected_total)
     end
   end 

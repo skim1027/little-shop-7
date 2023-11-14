@@ -21,7 +21,7 @@ class Invoice < ApplicationRecord
   end
 
   def potential_revenue
-    invoice_items.sum("unit_price * quantity * .01").round(2)
+    (invoice_items.sum("unit_price * quantity") * 0.01).round(2)
   end
 
   def self.sort_alphabetical

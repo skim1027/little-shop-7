@@ -47,7 +47,7 @@ RSpec.describe "Admin Invoices Show" do
       expected_total+=(ii.unit_price * ii.quantity)
     end
     expected_total = (0.01 * expected_total)
-    expect(page).to have_content("Total Potential Revenue: $#{expected_total.round(2)}")
+    expect(page).to have_content("Total Potential Revenue: $#{expected_total}")
   end
 
   ## USER STORY 36
