@@ -18,13 +18,14 @@ class InvoiceItem < ApplicationRecord
   end
 
   def top_discount
-    require 'pry'; binding.pry
-    item.merchant.bulk_discounts
-    .where("invoice_items.quantity >= bulk_discounts.threshold")
-    .order("bulk_discounts.threshold DESC")
-    .first
-    .pick(:id)
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
+    # item.merchant.bulk_discounts
+    # .select("bulk_discounts.*")
+    # .where("invoice_items.quantity >= bulk_discounts.threshold")
+    # .order("bulk_discounts.threshold DESC")
+    # .first
+    # .pick(:id)
+
     discounts = self.item.merchant.bulk_discounts
     quantity = self.quantity
     thresholds = item.merchant.bulk_discounts.pluck(:threshold)

@@ -5,6 +5,7 @@ RSpec.describe "Dashboard" do
   describe 'as a visitor' do
     before :each do
       test_data 
+      @disc1 = @merchant1.bulk_discounts.create!(discount_percent: 30, threshold: 1)
     end
     describe 'when I visit /merchant/:merchant_id/dashboard' do
       it "shows the name of the merchant" do
