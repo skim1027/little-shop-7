@@ -18,9 +18,13 @@ class BulkDiscountsController < ApplicationController
 
   def update
     discount = BulkDiscount.find(params[:id])
-    discount.update(discount_params)
     merchant = Merchant.find(params[:merchant_id])
-    redirect_to merchant_bulk_discount_path(merchant, discount)
+    if discount.update(discount_params)
+      redirect_to merchant_bulk_discount_path(merchant, discount)
+    else
+      redirect_to edit_merchant_bulk_discount_path(merchant, discount)
+      flash[:alert] = "Error: Fill in all criteria with valid integer"
+    end
   end
 
   def create
@@ -30,7 +34,7 @@ class BulkDiscountsController < ApplicationController
       redirect_to merchant_bulk_discounts_path(merchant)
     else
       redirect_to new_merchant_bulk_discount_path(merchant)
-      flash[:alert] = "Error: Fill in all criteria with integer"
+      flash[:alert] = "Error: Fill in all criteria with valid integer"
     end
   end
 

@@ -39,6 +39,20 @@ RSpec.describe "bulk discounts show page" do
         expect(page).to have_content("Discount Percent: 35%")
         expect(page).to have_content("Quantity Threshold: 35 items")
       end
+
+      it 'does not update if values are not valid' do
+        # Solo US 5
+        visit edit_merchant_bulk_discount_path(@merchant1, @disc1)
+        
+        fill_in("Discount Percent", with: 135)
+        fill_in("Quantity Threshold", with: 0)
+
+        click_button("Submit")
+        
+        expect(current_path).to eq(edit_merchant_bulk_discount_path(@merchant1, @disc1))
+        
+        expect(page).to have_content("Error: Fill in all criteria with valid integer")
+      end
     end
   end
 end

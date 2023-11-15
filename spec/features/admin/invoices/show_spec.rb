@@ -89,7 +89,7 @@ RSpec.describe "Admin Invoices Show" do
       visit "/admin/invoices/#{@invoice30.id}"
 
       expect(page).to have_content("Total Potential Revenue: $#{@invoice30.potential_revenue}")
-      expect(page).to have_content("Total Discounted Revenue: $#{@invoice30.invoice_items.discounted_revenue}")
+      expect(page).to have_content("Total Discounted Revenue: $#{@invoice30.invoice_items.total_discount_revenue(@invoice30.id)}")
     end
   end
 end

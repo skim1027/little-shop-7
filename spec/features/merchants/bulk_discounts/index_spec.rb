@@ -76,7 +76,7 @@ RSpec.describe "bulk discounts index page" do
         click_button("Submit")
 
         expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant1))
-        expect(page).to have_content("Error: Fill in all criteria with integer")
+        expect(page).to have_content("Error: Fill in all criteria with valid integer")
       end
 
       it 'can delete discount, and redirect to discount index page' do

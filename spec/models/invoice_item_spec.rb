@@ -28,12 +28,25 @@ RSpec.describe InvoiceItem, type: :model do
   end
 
   describe 'discounted_revenue' do
-    it 'shows the discounted revenue of the invoice' do
+    it 'shows the discounted amount from the invoice' do
       test_data_4
-      expect(@invoice30.invoice_items.discounted_revenue).to eq(83.00)
+      expect(@invoice30.invoice_items.discounted_revenue(@invoice30.id)).to eq(17.00)
     end
   end
 
+  describe 'total_revenue' do
+    it 'calculates total revenue of the invoice' do
+      test_data_4
+      expect(@invoice30.invoice_items.total_revenue).to eq(105.00)
+    end
+  end
+
+  describe 'total_discount_revenue' do
+    it 'calculates revenue with discounts applied' do
+      test_data_4
+      expect(@invoice30.invoice_items.total_discount_revenue(@invoice30.id)).to eq(88.00)
+    end
+  end
   describe 'top_discount' do
     it 'gives the bulk_discounts id of the top discount applied' do
       test_data_4
