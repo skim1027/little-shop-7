@@ -2,7 +2,10 @@
 <div class="merch_header">Little Esty Shop</div><br>
 <div class ="merch_nav_button"><%= link_to "Merchant Invoices", merchant_invoices_path %></div>
 <div class="merch_nav_button"><%= link_to "Merchant Items", merchant_items_path %></div>
+<div class ="merch_nav_button"><%= link_to "Merchant Bulk Discounts", "/merchants/#{@item.merchant.id}/bulk_discounts" %></div>
 <div class="merch_nav_button"><%= link_to "Merchant Dashboard", merchant_dashboard_index_path %></div>
+<div class ="merch_nav_button"><%= link_to "Admin Dashboard", "/admin" %></div>
+
 <h3><%= @item.merchant.name %>'s Item</h3>
 <%= link_to "Create a new item", new_merchant_item_path  %>
 <div class="merch_subhead">Item #<%= @item.id %></div>
