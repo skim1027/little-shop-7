@@ -122,6 +122,23 @@ RSpec.describe 'merchant invoices show page (/merchants/:merchant_id/invoices/:i
           expect(page).to have_content("No discount applied")
         end
       end
+
+      it 'applies better discount if there are multiple applicable' do
+        test_data_4
+        disc4 = @merchant90.bulk_discounts.create!(discount_percent: 25, threshold: 10)
+        
+        # Solo US 7
+        # Item 92, quantity 20; discount 2 (discount_percent: 10, threshold: 20) and 4 (discount_percent: 25, threshold: 10) applies, discount 4 is better deal
+
+        visit merchant_invoice_path(@merchant90, @invoice30)
+
+        within("#item-#{@item92.id}") do
+          expect(page).to have_link("Discount Applied")
+          click_link("Discount Applied")
+        end
+
+        expect(current_path).to eq(merchant_bulk_discount_path(@merchant90, disc4))
+      end
     end
   end
 end
