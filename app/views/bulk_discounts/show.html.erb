@@ -1,4 +1,14 @@
 <div class="merch_header"> Little Esty Shop</div><br>
+<div class ="merch_nav_button"><%= link_to "Merchant Invoices", "/merchants/#{@discount.merchant.id}/invoices" %></div>
+<div class ="merch_nav_button"><%= link_to "Merchant Items", "/merchants/#{@discount.merchant.id}/items" %></div>
+<div class ="merch_nav_button"><%= link_to "Merchant Bulk Discounts", "/merchants/#{@discount.merchant.id}/bulk_discounts" %></div>
+<div class ="merch_nav_button"><%= link_to "Merchant Dashboard", "/merchants/#{@discount.merchant.id}/dashboard" %></div>
+<div class ="merch_nav_button"><%= link_to "Admin Dashboard", "/admin" %></div>
+
+<h3> <%= @discount.merchant.name %> </h3>
+<br><br>
+<div class="merch_sub_full_center">
+<h3> Discount # <%= @discount.id %></h3></div><br><br>
 
 <p>Discount Number <%= @discount.id %> Information</p>
   <li>Discount Percent: <%= @discount.discount_percent %>%</li>
