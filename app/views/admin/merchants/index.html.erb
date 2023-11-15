@@ -14,33 +14,33 @@
 
 <div class="three-columns">
   <div>
-    <h2>Enabled Merchants</h2>
+    <div class="admin_sub_header">Enabled Merchants</div>
       <ol> <% @merchants.each do |merchant| %>
-             <% if merchant.enabled? %>
+            <% if merchant.enabled? %>
                 <div class="button-container">
                 <%= link_to merchant.name, "/admin/merchants/#{merchant.id}" %>
                 <%= button_to "Disable", "/admin/merchants/#{merchant.id}", method: :patch, params: {:merchant_id => merchant.id, :enable => "no"} %><br><br>
                 </div>
-             <% end %>
+            <% end %>
             <% end %>
       </ol>
   </div>
 
   <div>
-    <h2>Disabled Merchants</h2>
+    <div class="admin_sub_header">Disabled Merchants</div>
       <ol> <% @merchants.each do |merchant| %>
-             <% if !merchant.enabled? %>
-                <div class="button-container">
-                <%= link_to merchant.name, "/admin/merchants/#{merchant.id}" %>
-                <%= button_to "Enable", "/admin/merchants/#{merchant.id}", method: :patch, params: {:merchant_id => merchant.id, :enable => "yes"} %><br><br>
-                </div>
-              <% end %>
-            <% end %>
+        <% if !merchant.enabled? %>
+          <div class="button-container">
+          <%= link_to merchant.name, "/admin/merchants/#{merchant.id}" %>
+          <%= button_to "Enable", "/admin/merchants/#{merchant.id}", method: :patch, params: {:merchant_id => merchant.id, :enable => "yes"} %><br><br>
+          </div>
+        <% end %>
+      <% end %>
       </ol>
   </div>
 
   <div>
-    <h2> Top 5 Merchants </h2>
+    <div class="admin_sub_header">Top 5 Merchant</div>
       <ol>
         <% @merchants.popular_merchants.each do |merchant| %>
           <li><h4><%= merchant.name %></h4> <%= number_to_currency(merchant.total_revenue) %> in sales<br>

@@ -17,11 +17,11 @@
   </div><br>
 
   <b> Created on: </b> <%= @invoice.format_date %><br>
-  <h3>Total Potential Revenue: <%= number_to_currency(@invoice.potential_revenue) %></h3>
+  <h3>Total Potential Revenue: <%= number_to_currency(@invoice.invoice_items.total_revenue) %></h3>
   <% if @invoice.invoice_items.discounted_revenue(@invoice.id) != nil %>
     <h3><b><p>Total Discounted Revenue: <%= number_to_currency(@invoice.invoice_items.total_discount_revenue(@invoice.id)) %></p></b></h3>
-  <% else %>
-    <h3><b><p>Total Discounted Revenue: <%= number_to_currency(@invoice.invoice_items.total_revenue) %></p></b></h3>
+  <% elsif @invoice.invoice_items.discounted_revenue(@invoice.id) == nil %>
+    <h3><b><p>Total Discounted Revenue (No discount): <%= number_to_currency(@invoice.invoice_items.total_revenue) %></p></b></h3>
   <% end %>
   <h3> <b>Customer Name: </b> <%= @invoice.customer.name %><br></h3>
 

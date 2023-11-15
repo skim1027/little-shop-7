@@ -90,6 +90,7 @@ RSpec.describe "Admin Invoices Show" do
 
       expect(page).to have_content("Total Potential Revenue: $#{@invoice30.potential_revenue}")
       expect(page).to have_content("Total Discounted Revenue: $#{@invoice30.invoice_items.total_discount_revenue(@invoice30.id)}")
+      save_and_open_page
     end
   end
 end
