@@ -40,7 +40,7 @@
   </div>
 
   <div>
-    <div class="admin_sub_header">Top 5 Merchant</div>
+    <div class="admin_sub_header">Top 5 Merchants</div>
       <ol>
         <% @merchants.popular_merchants.each do |merchant| %>
           <li><h4><%= merchant.name %></h4> <%= number_to_currency(merchant.total_revenue) %> in sales<br>
