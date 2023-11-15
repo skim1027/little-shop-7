@@ -68,7 +68,6 @@ RSpec.describe 'merchant invoices show page (/merchants/:merchant_id/invoices/:i
     @customer1 = create(:customer)
     @invoice1 = create(:invoice, status: 1, customer_id: @customer1.id)
     @invoice_item1 = InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice1.id, quantity: 4, unit_price: 10, status: 0)
-
       visit "/merchants/#{@merchant1.id}/invoices/#{@invoice1.id}"
       expect(page).to have_selector("select")
       expect(find("select").value).to eq(@invoice_item1.status)
@@ -97,7 +96,8 @@ RSpec.describe 'merchant invoices show page (/merchants/:merchant_id/invoices/:i
         # Solo US 6
         visit merchant_invoice_path(@merchant90, @invoice30)
         expect(page).to have_content("Total Revenue: $#{@invoice30.potential_revenue}")
-        expect(page).to have_content("Total Discounted Revenue: $#{@invoice30.invoice_items.discounted_revenue}")
+        
+        expect(page).to have_content("Total Discounted Revenue: $#{@invoice30.invoice_items.total_discount_revenue(@invoice30.id)}")
       end
 
       it 'shows links to applied discounts' do
@@ -119,6 +119,7 @@ RSpec.describe 'merchant invoices show page (/merchants/:merchant_id/invoices/:i
 
         within("#item-#{@item91.id}") do
           expect(page).to_not have_link("Discount Applied")
+          expect(page).to have_content("No discount applied")
         end
       end
     end

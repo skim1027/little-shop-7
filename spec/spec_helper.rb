@@ -68,7 +68,7 @@ end
 
 def test_data_2
   @merchant1 = create(:merchant, name: "Target")
-
+  @disc1 = @merchant1.bulk_discounts.create!(discount_percent: 30, threshold: 50)
   @customer1 = create(:customer)
   @customer2 = create(:customer)
   @customer3 = create(:customer)

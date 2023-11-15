@@ -70,7 +70,7 @@ Customer.destroy_all
 # @transaction7 = Transaction.create!(credit_card_number: 203942, credit_card_expiration_date: "12/2024", result: 1, invoice_id: @invoice_7.id)
 # @transaction8 = Transaction.create!(credit_card_number: 203942, credit_card_expiration_date: "12/2024", result: 1, invoice_id: @invoice_8.id)
 
-# # Both discounts are for Merchant 1
+# # # # Both discounts are for Merchant 1
 # @discount_1 = BulkDiscount.create!(discount_percent: 20.0, threshold: 5, merchant: @merchant1)
 # @discount_2 = BulkDiscount.create!(discount_percent: 15.0, threshold: 10, merchant: @merchant1)
 
@@ -79,3 +79,32 @@ Customer.destroy_all
 # $72 - 20% off ($14.40) = $57.60 (Even though this item quantity qualifies for the 15% off for 10 or more, 15% of 72 is only -$10.80)
 # Final total before discounts: $90 + $72 = $162
 # Final total after discounts $72 + $57.60 = $129.60
+
+# @merchant90 = Merchant.create(name: "Target")
+
+# @customer90 = Customer.create(first_name: "Joey", last_name: "Smith")
+
+# @disc1 = @merchant90.bulk_discounts.create!(discount_percent: 30, threshold: 50)
+# @disc2 = @merchant90.bulk_discounts.create!(discount_percent: 30, threshold: 40)
+# @disc3 = @merchant90.bulk_discounts.create!(discount_percent: 20, threshold: 30)
+# @disc4 = @merchant90.bulk_discounts.create!(discount_percent: 10, threshold: 20)
+
+# @item90 = Item.create(name: "hat", description: "cool hat", unit_price: 100, merchant_id: @merchant90.id)
+# @item91 = Item.create(name: "straw", description: "it is for drinking", unit_price: 50, merchant_id: @merchant90.id)
+# @item92 = Item.create(name: "phone", description: "retro phone", unit_price: 150, merchant_id: @merchant90.id)
+# @item93 = Item.create(name: "bike", description: "mountain bike", unit_price: 100, merchant_id: @merchant90.id)
+
+# @invoice30 = Invoice.create(status: 1, customer_id: @customer90.id, created_at: Time.new(2023, 1, 1)) #sunday
+# @invoice31 = Invoice.create(status: 1, customer_id: @customer90.id, created_at: Time.new(2023, 1, 1)) #sunday
+
+# @invoice_item91 = InvoiceItem.create(item_id: @item90.id, invoice_id: @invoice30.id, quantity: 40, unit_price: 100, status: 2)
+# @invoice_item92 = InvoiceItem.create(item_id: @item91.id, invoice_id: @invoice30.id, quantity: 10, unit_price: 50, status: 2)
+# @invoice_item93 = InvoiceItem.create(item_id: @item92.id, invoice_id: @invoice30.id, quantity: 20, unit_price: 150, status: 2)
+# @invoice_item94 = InvoiceItem.create(item_id: @item93.id, invoice_id: @invoice30.id, quantity: 30, unit_price: 100, status: 2)
+
+# @invoice_item95 = InvoiceItem.create(item_id: @item90.id, invoice_id: @invoice31.id, quantity: 30, unit_price: 50, status: 2)
+# @invoice_item96 = InvoiceItem.create(item_id: @item91.id, invoice_id: @invoice31.id, quantity: 40, unit_price: 100, status: 2)
+# @invoice_item96 = InvoiceItem.create(item_id: @item93.id, invoice_id: @invoice31.id, quantity: 50, unit_price: 150, status: 2)
+
+# @transaction91 = Transaction.create(result: 1, invoice_id: @invoice30.id)
+# @transaction92 = Transaction.create(result: 1, invoice_id: @invoice31.id)
